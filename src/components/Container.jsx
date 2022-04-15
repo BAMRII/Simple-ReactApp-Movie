@@ -1,11 +1,11 @@
-import React from 'react';
+import React from 'react'
 import{useEffect, useState} from 'react';
-import SearchIcon from './search.svg';
-import './App.css';
+import SearchIcon from '../search.svg';
+import '../App.css';
 
 const API_KEY = process.env.REACT_APP_API_KEY
 
-function App() {
+function Container() {
 
 const [movieTitle,setMovieTitle]=useState('Batman');  
 const [movies,setMovies]=useState([]);  
@@ -15,14 +15,14 @@ const [movies,setMovies]=useState([]);
  const response = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${title}`);
  const data = await response.json();
  setMovies(data.results);
- console.log(data.results);
 }
 
 useEffect(() => {
   searchMovies(movieTitle);
 },[movieTitle]);
   return (
-      <div className="app">
+      <div>
+    <div>
     <h1>Movie React App</h1>
     <div className="search">
       <input onChange={(prevMovie)=>{
@@ -33,7 +33,7 @@ useEffect(() => {
         />
       <img src={SearchIcon} alt="search"/>
     </div>
-    
+    </div>
 
     <div className="container">
       
@@ -58,4 +58,4 @@ useEffect(() => {
   )
 }
 
-export default App;
+export default Container
